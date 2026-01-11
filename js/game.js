@@ -623,8 +623,11 @@ export function finishGame() {
 export function restartGame() {
     restartBtn.addEventListener('click', initGame);
     restartBtn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+        if (e.key === 'Enter') {
             initGame();
+        }
+        if (e.key === ' ') {
+            return;
         }
     });
 }
