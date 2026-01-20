@@ -82,6 +82,7 @@
   margin-right: 20px;
   line-height: 1;
   position: relative;
+  pointer-events: auto;
 }
 
 .theme-toggle-btn:hover {
