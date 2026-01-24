@@ -7,6 +7,7 @@
   left: 0;
   z-index: 1000;
   height: 80px;
+  pointer-events: none;
 }
 
 .nav-container {
@@ -30,6 +31,7 @@
   gap: 10px;
   opacity: 0.9;
   transition: opacity 0.3s;
+  pointer-events: auto;
 }
 
 .logo-img {
@@ -46,6 +48,7 @@
   list-style: none;
   display: flex;
   align-items: center;
+  pointer-events: auto;
 }
 
 .nav-links a {
@@ -79,6 +82,7 @@
   margin-right: 20px;
   line-height: 1;
   position: relative;
+  pointer-events: auto;
 }
 
 .theme-toggle-btn:hover {
