@@ -1,12 +1,26 @@
+/**
+ * @fileoverview Game module for MecanoType
+ * Handles core game logic, word generation, and user input
+ */
+
 import { audio, initAudio, playSound } from './audio.js';
 import { config } from './config.js';
 import { data } from './data.js';
-import { stats, userStats, saveUserStats } from './stats.js';
-import { ui, timerContainer, timerDisplay, gameArea, wordsContainer, statsContainer, wpmEl, accEl, errorsEl, weakKeysEl, restartBtn } from './ui.js';
+import { stats, userStats, saveUserStats, saveCharStats, checkAndSaveRecord } from './stats.js';
+import { ui, timerContainer, timerDisplay, gameArea, wordsContainer, statsContainer, wpmEl, accEl, errorsEl, weakKeysEl, restartBtn, showToast } from './ui.js';
 import { t, startTimer, stopTimer } from './utils.js';
 
+// ===================================
+// Game State
+// ===================================
+
+/** Statistics for the current game session */
 let currentGameCharStats = {};
 
+/**
+ * Game state object
+ * @type {Object}
+ */
 export const game = {
     timeLeft: config.timeLimit,
     currentWords: [],
@@ -572,39 +586,45 @@ export function handleKeydown(e) {
     }
 }
 
+/**
+ * Finish the game and display results
+ */
 export function finishGame() {
     game.isGameFinished = true;
     document.body.classList.remove('focus-mode');
     
-    localStorage.setItem('mecano_char_stats', JSON.stringify(stats.charStats));
+    // Save character statistics
+    saveCharStats();
     
+    // Calculate results
     const endTime = Date.now();
     const timeInMinutes = (endTime - game.startTime) / 60000;
     
-    const netWPM = Math.round(((game.totalChars - game.errorCount) / 5) / timeInMinutes);
+    // Prevent division by zero
+    const netWPM = timeInMinutes > 0 
+        ? Math.round(((game.totalChars - game.errorCount) / 5) / timeInMinutes)
+        : 0;
     
     const totalProcessed = game.correctChars + game.errorCount;
-    const accuracy = totalProcessed > 0 ? Math.round((game.correctChars / totalProcessed) * 100) : 0;
+    const accuracy = totalProcessed > 0 
+        ? Math.round((game.correctChars / totalProcessed) * 100) 
+        : 0;
 
+    // Update user statistics
     userStats.completed++;
     userStats.time += Math.round((endTime - game.startTime) / 1000);
     
-    if (data.wordCount !== 'infinite') {
-        const count = data.wordCount;
-        if (!userStats.records[count] || typeof userStats.records[count] !== 'object' || !('wpm' in userStats.records[count])) {
-             userStats.records[count] = { wpm: 0, acc: 0 };
-        }
-        
-        if (netWPM > userStats.records[count].wpm) {
-            userStats.records[count] = { wpm: netWPM, acc: accuracy };
-        }
-    }
+    // Check for new record
+    const isNewRecord = checkAndSaveRecord(data.wordCount, Math.max(0, netWPM), accuracy);
+    
     saveUserStats();
     
+    // Display results
     wpmEl.textContent = Math.max(0, netWPM);
     accEl.textContent = accuracy + '%';
     errorsEl.textContent = game.errorCount;
     
+    // Show weak keys from this session
     const sortedWeakKeys = Object.entries(currentGameCharStats)
         .sort((a, b) => b[1] - a[1])
         .slice(0, 5)
@@ -613,21 +633,36 @@ export function finishGame() {
         
     weakKeysEl.textContent = sortedWeakKeys || t("results.none");
 
+    // Show results UI
     statsContainer.classList.remove('hidden');
     document.getElementById('restart-note').classList.remove('hidden');
     restartBtn.classList.remove('hidden');
     
+    // Show new record toast if applicable
+    if (isNewRecord && netWPM > 0) {
+        setTimeout(() => {
+            showToast(t("toast.newRecord") || "🎉 New personal record!", "success", 4000);
+        }, 500);
+    }
+    
     restartBtn.focus();
 }
 
+/**
+ * Set up restart button event listeners
+ */
 export function restartGame() {
-    restartBtn.addEventListener('click', initGame);
+    if (!restartBtn) return;
+    
+    restartBtn.addEventListener('click', () => initGame());
     restartBtn.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
+            e.preventDefault();
             initGame();
         }
+        // Prevent space from scrolling
         if (e.key === ' ') {
-            return;
+            e.preventDefault();
         }
     });
 }

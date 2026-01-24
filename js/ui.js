@@ -1,14 +1,27 @@
+/**
+ * @fileoverview UI module for MecanoType
+ * Handles all DOM manipulation, event listeners, and visual feedback
+ */
+
 import { audio, initAudio, playSound } from './audio.js';
-import { config } from './config.js';
+import { config, setStorageItem } from './config.js';
 import { data, applyTranslations } from './data.js';
 import { game, initGame, handleKeydown } from './game.js';
 import { stats, renderUserStats, renderGlobalStatsTable, currentSort } from './stats.js';
 import { t } from './utils.js';
 
+// ===================================
+// UI State
+// ===================================
+
 export const ui = {
     currentView: 'game',
     paperScrollY: 100,
 };
+
+// ===================================
+// DOM Element References
+// ===================================
 
 export const timerContainer = document.getElementById('timer-container');
 export const timerDisplay = document.getElementById('timer-display');
@@ -34,6 +47,111 @@ export const closeStatsBtn = document.getElementById('close-stats-btn');
 export const resetStatsBtn = document.getElementById('reset-stats-btn');
 export const globalStatsTableBody = document.querySelector('#global-stats-table tbody');
 export const mobileInput = document.getElementById('mobile-input');
+
+// ===================================
+// Loading & Toast Functions
+// ===================================
+
+/**
+ * Hide the loading overlay with fade animation
+ */
+export function hideLoading() {
+    const overlay = document.getElementById('loading-overlay');
+    if (overlay) {
+        overlay.classList.add('fade-out');
+        setTimeout(() => {
+            overlay.remove();
+        }, 300);
+    }
+}
+
+/**
+ * Show a toast notification
+ * @param {string} message - The message to display
+ * @param {string} type - Toast type: 'success', 'error', 'warning', or 'info'
+ * @param {number} duration - Duration in milliseconds (default: 3000)
+ */
+export function showToast(message, type = 'info', duration = 3000) {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+    
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.innerHTML = `
+        <i class="fas fa-${getToastIcon(type)}" aria-hidden="true"></i>
+        <span>${message}</span>
+    `;
+    
+    container.appendChild(toast);
+    
+    // Remove after duration
+    setTimeout(() => {
+        toast.classList.add('fade-out');
+        setTimeout(() => toast.remove(), 300);
+    }, duration);
+}
+
+/**
+ * Get icon name for toast type
+ * @param {string} type - Toast type
+ * @returns {string} Font Awesome icon name
+ */
+function getToastIcon(type) {
+    const icons = {
+        success: 'check-circle',
+        error: 'exclamation-circle',
+        warning: 'exclamation-triangle',
+        info: 'info-circle'
+    };
+    return icons[type] || icons.info;
+}
+
+/**
+ * Show a confirmation modal
+ * @param {string} message - The confirmation message
+ * @param {Function} onConfirm - Callback when confirmed
+ * @param {Function} onCancel - Callback when cancelled (optional)
+ */
+export function showConfirmModal(message, onConfirm, onCancel = null) {
+    const modal = document.getElementById('confirm-modal');
+    const messageEl = document.getElementById('modal-message');
+    const confirmBtn = document.getElementById('modal-confirm');
+    const cancelBtn = document.getElementById('modal-cancel');
+    const backdrop = modal?.querySelector('.modal-backdrop');
+    
+    if (!modal || !messageEl) return;
+    
+    messageEl.textContent = message;
+    modal.classList.remove('hidden');
+    
+    // Focus the cancel button for safety
+    cancelBtn?.focus();
+    
+    const cleanup = () => {
+        modal.classList.add('hidden');
+        confirmBtn?.removeEventListener('click', handleConfirm);
+        cancelBtn?.removeEventListener('click', handleCancel);
+        backdrop?.removeEventListener('click', handleCancel);
+    };
+    
+    const handleConfirm = () => {
+        cleanup();
+        onConfirm?.();
+    };
+    
+    const handleCancel = () => {
+        cleanup();
+        onCancel?.();
+    };
+    
+    confirmBtn?.addEventListener('click', handleConfirm);
+    cancelBtn?.addEventListener('click', handleCancel);
+    backdrop?.addEventListener('click', handleCancel);
+}
+
+// ===================================
+// Timer Display
+// ===================================
 
 export function updateTimerDisplay() {
     timerDisplay.textContent = game.timeLeft;
@@ -515,13 +633,32 @@ export function initButtons() {
     });
 
     resetStatsBtn.addEventListener('click', () => {
-        if (confirm(t("alerts.resetHistory"))) {
-            stats.charStats = {};
-            localStorage.removeItem('mecano_char_stats');
-            renderGlobalStatsTable();
-            weakKeysEl.textContent = "-";
-        }
+        showConfirmModal(
+            t("alerts.resetHistory"),
+            () => {
+                // On confirm
+                stats.charStats = {};
+                localStorage.removeItem('mecano_char_stats');
+                renderGlobalStatsTable();
+                weakKeysEl.textContent = "-";
+                showToast(t("toast.statsReset") || "Statistics reset successfully", "success");
+            }
+        );
     });
+
+    // Update aria-pressed attributes for toggle buttons
+    updateButtonAriaStates();
+}
+
+/**
+ * Update aria-pressed states for all toggle buttons
+ */
+function updateButtonAriaStates() {
+    numbersBtn?.setAttribute('aria-pressed', config.numbersEnabled);
+    uppercaseBtn?.setAttribute('aria-pressed', config.uppercaseEnabled);
+    symbolsBtn?.setAttribute('aria-pressed', config.symbolsEnabled);
+    suddenDeathBtn?.setAttribute('aria-pressed', config.suddenDeathEnabled);
+    soundBtn?.setAttribute('aria-pressed', audio.soundEnabled);
 }
 
 export function scrollPaper() {

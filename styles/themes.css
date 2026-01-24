@@ -88,6 +88,29 @@ body.dark-mode .restart-note {
     box-shadow: 0 8px 16px rgba(0,0,0,0.6);
 }
 
+body.dark-mode .timer-note {
+    background-color: #2a2a2a;
+    border: 2px solid #ffb300;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+}
+
+body.dark-mode .timer-note #timer-display {
+    color: #ffffff;
+}
+
+body.dark-mode .timer-note .timer-unit {
+    color: #aaa;
+}
+
+body.dark-mode .timer-note.danger {
+    background-color: #3a1a1a;
+    border-color: #ff5252;
+}
+
+body.dark-mode .timer-note.danger #timer-display {
+    color: #ff5252;
+}
+
 body.dark-mode .sticky-note h3,
 body.dark-mode .stat .val {
     color: #ffb300;
@@ -100,6 +123,36 @@ body.dark-mode .stat .label {
 
 body.dark-mode #restart-button {
     color: #ffffff;
+}
+
+/* Dark mode corner hint */
+body.dark-mode .corner-hint {
+    color: #78909c;
+}
+
+body.dark-mode .corner-hint .hint-key {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #78909c;
+}
+
+/* Dark mode modal */
+body.dark-mode .modal-content {
+    background-color: #2a2a2a;
+    border-color: #444;
+}
+
+body.dark-mode .modal-content h3 {
+    color: var(--accent-gold);
+}
+
+body.dark-mode .modal-content p {
+    color: #ccc;
+}
+
+/* Dark mode toast */
+body.dark-mode .toast {
+    background: #333;
+    border-color: #444;
 }
 
 /* Zen Mode */

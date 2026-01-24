@@ -3,7 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mecano Type Test</title>
+    <meta name="description" content="Mecano Type - A vintage typewriter-styled typing test app. Practice your typing skills with multiple languages, themes, and game modes.">
+    <meta name="keywords" content="typing test, typing practice, WPM, typing speed, mecanografía, typewriter">
+    <meta name="author" content="Jorge García">
+    <meta name="theme-color" content="#8d6e63">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mecano Type - Vintage Typing Practice">
+    <meta property="og:description" content="Practice your typing skills with a beautiful vintage typewriter interface. Track your WPM, accuracy, and improve with learning mode.">
+    <meta property="og:image" content="logo.png">
+    <meta property="og:url" content="https://github.com/jorgegarcia33/MecanoType">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mecano Type">
+    <meta name="twitter:description" content="Vintage typewriter typing practice app">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    
+    <title>Mecano Type - Vintage Typing Practice</title>
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/typewriter.css">
@@ -12,19 +33,32 @@
     <link rel="stylesheet" href="styles/themes.css">
     <link rel="stylesheet" href="styles/animations.css">
     <link rel="stylesheet" href="styles/responsive.css">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
+    <!-- Skip to main content for accessibility -->
+    <a href="#game-area" class="skip-link">Skip to main content</a>
+    
+    <!-- Loading overlay -->
+    <div id="loading-overlay" class="loading-overlay" aria-live="polite">
+        <div class="loading-spinner"></div>
+        <p>Loading...</p>
+    </div>
+    <header class="header" role="banner">
   <div class="nav-container">
-    <a href="index.html" class="logo">
-      <img src="logo.png" alt="MecanoTypeTest Logo" class="logo-img">
-      
-      MecanoTypeTest
+    <a href="index.html" class="logo" aria-label="Mecano Type - Home">
+      <img src="logo.png" alt="" class="logo-img" aria-hidden="true">
+      <span>MecanoType</span>
     </a>
     
-    <nav class="nav">
+    <nav class="nav" role="navigation" aria-label="Main navigation">
       <ul class="nav-links">
         <li>
           <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme" title="Toggle light/dark mode">
@@ -32,7 +66,7 @@
           </button>
         </li>
         <li>
-          <a href="https://github.com/jorgegarcia33/MecanoTypeTest" target="_blank" title="GitHub Repository" data-i18n-title="nav.github">
+          <a href="https://github.com/jorgegarcia33/MecanoType" target="_blank" title="GitHub Repository" data-i18n-title="nav.github">
             <i class="fa-brands fa-github"></i>
           </a>
         </li>
@@ -41,18 +75,18 @@
   </div>
 </header>
 
-<div class="desk">
-    <div class="typewriter">
-        <div class="return-lever"></div>
-        <div class="roller-section">
+<main class="desk" role="main">
+    <div class="typewriter" aria-label="Typewriter interface">
+        <div class="return-lever" aria-hidden="true"></div>
+        <div class="roller-section" aria-hidden="true">
             <div class="knob left"></div>
             <div class="roller"></div>
             <div class="knob right"></div>
         </div>
 
         <div class="paper-guide">
-            <div id="game-area" class="paper-sheet">
-                <div id="words" class="words"></div>
+            <div id="game-area" class="paper-sheet" role="application" aria-label="Typing area">
+                <div id="words" class="words" aria-live="polite" aria-atomic="false" tabindex="0"></div>
 
 
                 <div id="settings-sheet" class="sheet-content hidden">
@@ -204,63 +238,86 @@
 
             <div class="brand-plate">ROYAL</div>
 
-            <div class="controls-row">
-                <div class="keyboard-area">
-                    <button id="numbers-btn" class="mode-btn numbers-button" title="Numbers" data-i18n-title="tooltips.numbers">123</button>
-                    <button id="uppercase-btn" class="mode-btn" title="Uppercase" data-i18n-title="tooltips.uppercase"><i class="fas fa-font"></i></button>
-                    <button id="symbols-btn" class="mode-btn" title="Symbols" data-i18n-title="tooltips.symbols"><i class="fas fa-at"></i></button>
-                    <button id="sudden-death-btn" class="mode-btn" title="Sudden Death" data-i18n-title="tooltips.suddenDeath"><i class="fas fa-skull"></i></button>
-                    <button id="zen-btn" class="mode-btn" data-zen="false" title="Zen Mode" data-i18n-title="tooltips.zenMode" data-i18n-aria="tooltips.zenMode" aria-pressed="false">
+            <div class="controls-row" role="toolbar" aria-label="Game controls">
+                <div class="keyboard-area" role="group" aria-label="Typing modifiers">
+                    <button id="numbers-btn" class="mode-btn numbers-button" title="Numbers" data-i18n-title="tooltips.numbers" aria-pressed="false" aria-label="Toggle numbers">123</button>
+                    <button id="uppercase-btn" class="mode-btn" title="Uppercase" data-i18n-title="tooltips.uppercase" aria-pressed="false" aria-label="Toggle uppercase"><i class="fas fa-font" aria-hidden="true"></i></button>
+                    <button id="symbols-btn" class="mode-btn" title="Symbols" data-i18n-title="tooltips.symbols" aria-pressed="false" aria-label="Toggle symbols"><i class="fas fa-at" aria-hidden="true"></i></button>
+                    <button id="sudden-death-btn" class="mode-btn" title="Sudden Death" data-i18n-title="tooltips.suddenDeath" aria-pressed="false" aria-label="Toggle sudden death mode"><i class="fas fa-skull" aria-hidden="true"></i></button>
+                    <button id="zen-btn" class="mode-btn" data-zen="false" title="Zen Mode" data-i18n-title="tooltips.zenMode" data-i18n-aria="tooltips.zenMode" aria-pressed="false" aria-label="Toggle zen mode">
                         <i class="fas fa-spa" aria-hidden="true"></i>
                     </button>
                 </div>
-                <div class="keyboard-area">
-                    <button id="sound-btn" class="mode-btn" title="Sound" data-i18n-title="tooltips.sound"><i class="fas fa-volume-mute"></i></button>
-                    <button id="stats-btn" class="mode-btn" title="Statistics" data-i18n-title="tooltips.statistics"><i class="fas fa-chart-bar"></i></button>
-                    <button id="settings-btn" class="mode-btn" title="Settings" data-i18n-title="tooltips.settings"><i class="fas fa-cog"></i></button>
+                <div class="keyboard-area" role="group" aria-label="Settings and stats">
+                    <button id="sound-btn" class="mode-btn" title="Sound" data-i18n-title="tooltips.sound" aria-pressed="true" aria-label="Toggle sound"><i class="fas fa-volume-mute" aria-hidden="true"></i></button>
+                    <button id="stats-btn" class="mode-btn" title="Statistics" data-i18n-title="tooltips.statistics" aria-label="View statistics"><i class="fas fa-chart-bar" aria-hidden="true"></i></button>
+                    <button id="settings-btn" class="mode-btn" title="Settings" data-i18n-title="tooltips.settings" aria-label="Open settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="stats" class="sticky-note hidden">
-        <div class="pin"></div>
+    <aside id="stats" class="sticky-note hidden" role="complementary" aria-label="Test results">
+        <div class="pin" aria-hidden="true"></div>
         <h3 data-i18n="results.title">RESULTS</h3>
         <div class="stat-row">
             <div class="stat">
-                <div class="val" id="wpm">0</div>
+                <div class="val" id="wpm" aria-label="Words per minute">0</div>
                 <div class="label" data-i18n="results.wpm">WPM</div>
             </div>
             <div class="stat">
-                <div class="val" id="acc">0%</div>
+                <div class="val" id="acc" aria-label="Accuracy percentage">0%</div>
                 <div class="label" data-i18n="results.accuracy">ACCURACY</div>
             </div>
         </div>
         <div class="stat-row">
             <div class="stat">
-                <div class="val" id="errors">0</div>
+                <div class="val" id="errors" aria-label="Number of errors">0</div>
                 <div class="label" data-i18n="results.errors">ERRORS</div>
             </div>
         </div>
         <div class="stat wide">
             <div class="label" data-i18n="results.weakKeys">Weak keys:</div>
-            <div class="val" id="weak-keys">-</div>
+            <div class="val" id="weak-keys" aria-label="Keys with most errors">-</div>
         </div>
-    </div>
+    </aside>
 
-    <div id="restart-note" class="sticky-note hidden restart-note">
-        <div class="pin"></div>
-        <div id="restart-button" tabindex="0">
-            <i class="fas fa-redo"></i> <span data-i18n="actions.restart">RESTART</span>
-        </div>
+    <aside id="restart-note" class="sticky-note hidden restart-note" role="complementary">
+        <div class="pin" aria-hidden="true"></div>
+        <button id="restart-button" aria-label="Restart test (Tab)">
+            <i class="fas fa-redo" aria-hidden="true"></i> <span data-i18n="actions.restart">RESTART</span>
+        </button>
+    </aside>
+    
+    <aside id="timer-container" class="sticky-note hidden timer-note" role="timer" aria-live="assertive">
+        <div class="pin" aria-hidden="true"></div>
+        <span id="timer-display" aria-label="Time remaining in seconds">30</span><span class="timer-unit">s</span>
+    </aside>
+
+    <!-- Keyboard hint in corner (only visible on large screens) -->
+    <div class="corner-hint" aria-hidden="true">
+        <span class="hint-key">Tab</span> <span class="hint-text" data-i18n="shortcuts.restart">Restart</span>
     </div>
-    <div id="timer-container" class="sticky-note hidden timer-note">
-        <div class="pin"></div>
-        <span id="timer-display" aria-label="Time remaining in seconds">30</span>
+    
+</main>
+
+<!-- Confirmation Modal -->
+<div id="confirm-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+        <h3 id="modal-title" data-i18n="modal.confirm">Confirm</h3>
+        <p id="modal-message"></p>
+        <div class="modal-actions">
+            <button id="modal-cancel" class="action-btn" data-i18n="modal.cancel">Cancel</button>
+            <button id="modal-confirm" class="danger-btn" data-i18n="modal.confirm">Confirm</button>
+        </div>
     </div>
 </div>
 
-<input type="text" id="mobile-input" style="opacity: 0; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+<input type="text" id="mobile-input" class="mobile-input" aria-label="Mobile typing input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text">
+
+<!-- Toast notifications container -->
+<div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
 <script type="module" src="./js/main.js"></script>
 </body>

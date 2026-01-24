@@ -18,7 +18,13 @@
     .restart-note {
         transform: scale(0.8) rotate(-3deg);
         right: 20px;
-        top: 250px;
+        top: 300px;
+    }
+    
+    .timer-note {
+        transform: scale(0.8) rotate(1deg);
+        right: 20px;
+        top: 200px;
     }
 }
 
@@ -91,6 +97,29 @@
         font-size: 1rem;
     }
     
+    .timer-note {
+        position: fixed;
+        top: 60px;
+        left: 10px;
+        right: auto;
+        width: auto;
+        min-width: 80px;
+        height: auto;
+        padding: 8px 15px;
+        transform: none;
+        z-index: 1000;
+        border-radius: 5px;
+        font-size: 1.2rem;
+    }
+    
+    .timer-note .pin {
+        display: none;
+    }
+    
+    .timer-note #timer-display {
+        font-size: 1.5rem;
+    }
+    
     .modal-content {
         width: 90%;
         margin: 30% auto;
@@ -107,11 +136,45 @@
         height: 45px;
         font-size: 0.9rem;
     }
+    
+    .toast-container {
+        right: 10px;
+        bottom: 60px;
+        left: 10px;
+    }
+    
+    .toast {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+    
+    /* Loading overlay mobile */
+    .loading-overlay p {
+        font-size: 0.9rem;
+    }
+    
+    .loading-spinner {
+        width: 36px;
+        height: 36px;
+    }
 }
 
 @media screen and (max-width: 576px) {
     .typewriter {
         transform: scale(0.42);
+    }
+    
+    .modal-content {
+        padding: 15px;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .modal-actions button {
+        width: 100%;
     }
 }
 
@@ -127,5 +190,24 @@
     }
     .desk {
         padding-bottom: 0;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --text-color: #000;
+        --paper-color: #fff;
+        --error-color: #c00;
+    }
+    
+    .letter.correct {
+        color: #000;
+        font-weight: bold;
+    }
+    
+    .letter.incorrect {
+        color: #c00;
+        text-decoration: underline;
     }
 }

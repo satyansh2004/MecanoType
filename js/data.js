@@ -62,7 +62,7 @@ export const i18n = {
         "stats.filters.all": "All",
         "stats.filters.lowercase": "a-z",
         "stats.filters.uppercase": "A-Z",
-        "stats.filters.accents": "A-AŹ",
+        "stats.filters.accents": "á-ü",
         "stats.filters.numbers": "0-9",
         "stats.filters.symbols": "#@!",
         "stats.headers.key": "Key",
@@ -71,7 +71,12 @@ export const i18n = {
         "stats.headers.errorRate": "% Error",
         "stats.noData": "No data yet",
         "alerts.resetHistory": "Are you sure you want to reset all your learning history?",
-        "alerts.loadWords": "To load words from words.json, you need to run this project on a local server (due to CORS security policies). If you use VS Code, install the 'Live Server' extension and click 'Go Live'."
+        "alerts.loadWords": "To load words from words.json, you need to run this project on a local server (due to CORS security policies). If you use VS Code, install the 'Live Server' extension and click 'Go Live'.",
+        "modal.confirm": "Confirm",
+        "modal.cancel": "Cancel",
+        "toast.statsReset": "Statistics reset successfully",
+        "toast.newRecord": "New personal record!",
+        "shortcuts.restart": "Restart"
     },
     es: {
         "nav.github": "Repositorio de GitHub",
@@ -123,7 +128,7 @@ export const i18n = {
         "stats.filters.all": "Todos",
         "stats.filters.lowercase": "a-z",
         "stats.filters.uppercase": "A-Z",
-        "stats.filters.accents": "A-Ź",
+        "stats.filters.accents": "á-ü",
         "stats.filters.numbers": "0-9",
         "stats.filters.symbols": "#@!",
         "stats.headers.key": "Tecla",
@@ -132,7 +137,12 @@ export const i18n = {
         "stats.headers.errorRate": "% Error",
         "stats.noData": "Sin datos",
         "alerts.resetHistory": "¿Estás seguro de que quieres borrar todo tu historial de aprendizaje?",
-        "alerts.loadWords": "Para cargar las palabras desde words.json, debes ejecutar este proyecto en un servidor local (por políticas de seguridad CORS). Si usas VS Code, instala la extensión 'Live Server' y haz clic en 'Go Live'."
+        "alerts.loadWords": "Para cargar las palabras desde words.json, debes ejecutar este proyecto en un servidor local (por políticas de seguridad CORS). Si usas VS Code, instala la extensión 'Live Server' y haz clic en 'Go Live'.",
+        "modal.confirm": "Confirmar",
+        "modal.cancel": "Cancelar",
+        "toast.statsReset": "Estadísticas restablecidas correctamente",
+        "toast.newRecord": "¡Nuevo récord personal!",
+        "shortcuts.restart": "Reiniciar"
     },
     de: {
         "nav.github": "GitHub-Repository",
@@ -173,10 +183,16 @@ export const i18n = {
         "results.errors": "FEHLER",
         "results.weakKeys": "Schwache Tasten:",
         "results.none": "Keine",
+        "stats.tabs.profile": "Profil",
+        "stats.tabs.keys": "Tastenanalyse",
+        "stats.profile.started": "Tests Gestartet",
+        "stats.profile.completed": "Tests Abgeschlossen",
+        "stats.profile.time": "Tippzeit",
+        "stats.profile.records": "Persönliche Rekorde (WPM)",
         "stats.filters.all": "Alle",
         "stats.filters.lowercase": "a-z",
         "stats.filters.uppercase": "A-Z",
-        "stats.filters.accents": "A-AŹ",
+        "stats.filters.accents": "ä-ü",
         "stats.filters.numbers": "0-9",
         "stats.filters.symbols": "#@!",
         "stats.headers.key": "Taste",
@@ -185,7 +201,12 @@ export const i18n = {
         "stats.headers.errorRate": "% Fehler",
         "stats.noData": "Noch keine Daten",
         "alerts.resetHistory": "Möchtest du wirklich deinen gesamten Lernverlauf zurücksetzen?",
-        "alerts.loadWords": "Um Wörter aus words.json zu laden, musst du dieses Projekt auf einem lokalen Server ausführen (wegen CORS-Sicherheitsrichtlinien). Wenn du VS Code nutzt, installiere die Erweiterung 'Live Server' und klicke auf 'Go Live'."
+        "alerts.loadWords": "Um Wörter aus words.json zu laden, musst du dieses Projekt auf einem lokalen Server ausführen (wegen CORS-Sicherheitsrichtlinien). Wenn du VS Code nutzt, installiere die Erweiterung 'Live Server' und klicke auf 'Go Live'.",
+        "modal.confirm": "Bestätigen",
+        "modal.cancel": "Abbrechen",
+        "toast.statsReset": "Statistiken erfolgreich zurückgesetzt",
+        "toast.newRecord": "Neuer persönlicher Rekord!",
+        "shortcuts.restart": "Neustart"
     },
     fr: {
         "nav.github": "Dépôt GitHub",
@@ -226,10 +247,16 @@ export const i18n = {
         "results.errors": "ERREURS",
         "results.weakKeys": "Touches faibles:",
         "results.none": "Aucune",
+        "stats.tabs.profile": "Profil",
+        "stats.tabs.keys": "Analyse des Touches",
+        "stats.profile.started": "Tests Commencés",
+        "stats.profile.completed": "Tests Terminés",
+        "stats.profile.time": "Temps de Frappe",
+        "stats.profile.records": "Records Personnels (WPM)",
         "stats.filters.all": "Tous",
         "stats.filters.lowercase": "a-z",
         "stats.filters.uppercase": "A-Z",
-        "stats.filters.accents": "A-AŹ",
+        "stats.filters.accents": "à-ü",
         "stats.filters.numbers": "0-9",
         "stats.filters.symbols": "#@!",
         "stats.headers.key": "Touche",
@@ -238,7 +265,12 @@ export const i18n = {
         "stats.headers.errorRate": "% Erreur",
         "stats.noData": "Aucune donnée",
         "alerts.resetHistory": "Voulez-vous vraiment réinitialiser tout votre historique d'apprentissage ?",
-        "alerts.loadWords": "Pour charger les mots depuis words.json, vous devez exécuter ce projet sur un serveur local (en raison des politiques de sécurité CORS). Si vous utilisez VS Code, installez l'extension 'Live Server' et cliquez sur 'Go Live'."
+        "alerts.loadWords": "Pour charger les mots depuis words.json, vous devez exécuter ce projet sur un serveur local (en raison des politiques de sécurité CORS). Si vous utilisez VS Code, installez l'extension 'Live Server' et cliquez sur 'Go Live'.",
+        "modal.confirm": "Confirmer",
+        "modal.cancel": "Annuler",
+        "toast.statsReset": "Statistiques réinitialisées avec succès",
+        "toast.newRecord": "Nouveau record personnel !",
+        "shortcuts.restart": "Recommencer"
     }
 };
 

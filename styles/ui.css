@@ -55,7 +55,7 @@
 }
 
 .restart-note {
-    top: 320px;
+    top: 380px;
     right: 50px;
     transform: rotate(-3deg);
     background: #ffcc80;
@@ -66,9 +66,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
+    height: 80px;
+    width: 160px;
     padding: 0;
-    /* Remove padding to let button fill entire area */
 }
 
 .restart-note:hover {
@@ -84,7 +84,7 @@
     border: none;
     background: transparent;
     font-family: var(--font-vintage);
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -100,6 +100,49 @@
 #restart-button:hover,
 #restart-button:focus {
     color: #000;
+}
+
+/* Timer note styles */
+.timer-note {
+    top: 270px;
+    right: 50px;
+    transform: rotate(1deg);
+    width: 120px;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: #ffecb3;
+    border-color: #ffc107;
+}
+
+.timer-note #timer-display {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #212121;
+    line-height: 1;
+}
+
+.timer-note .timer-unit {
+    font-size: 1.2rem;
+    color: #666;
+    margin-left: 0;
+}
+
+.timer-note.danger {
+    background: #ffcdd2;
+    border-color: #e53935;
+    animation: pulse-danger 0.5s ease-in-out infinite alternate;
+}
+
+.timer-note.danger #timer-display {
+    color: #c62828;
+}
+
+@keyframes pulse-danger {
+    from { transform: rotate(1deg) scale(1); }
+    to { transform: rotate(1deg) scale(1.05); }
 }
 
 .modal {
@@ -588,4 +631,287 @@ th.sortable.desc i::before {
 
 .dark-mode th.sortable:hover {
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===================================
+   Stats Table Improvements
+   =================================== */
+
+.global-stats-table {
+    border-radius: var(--radius-md, 8px);
+    overflow: hidden;
+}
+
+.global-stats-table .char-cell {
+    font-family: var(--font-typewriter);
+    font-size: 1.2rem;
+}
+
+.global-stats-table .char-display {
+    display: inline-block;
+    min-width: 1.5em;
+    text-align: center;
+    padding: 2px 6px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+.global-stats-table .high-error {
+    color: var(--error-color);
+    font-weight: bold;
+}
+
+.global-stats-table .medium-error {
+    color: var(--warning-color, #ff9800);
+    font-weight: 600;
+}
+
+.global-stats-table .low-error {
+    color: var(--text-muted, #666);
+}
+
+.global-stats-table .empty-cell {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-muted, #666);
+    font-style: italic;
+}
+
+.dark-mode .global-stats-table .char-display {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===================================
+   Timer Note Improvements
+   =================================== */
+
+.timer-note {
+    top: 180px;
+    right: 50px;
+    transform: rotate(1deg);
+    background: #fff176;
+    border-color: #fdd835;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    min-width: 100px;
+    padding: 15px 25px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.timer-note.danger {
+    background: #ffcdd2;
+    border-color: #e57373;
+    animation: timerPulse 0.5s ease-in-out infinite;
+}
+
+@keyframes timerPulse {
+    0%, 100% { transform: rotate(1deg) scale(1); }
+    50% { transform: rotate(1deg) scale(1.05); }
+}
+
+#timer-display {
+    font-family: var(--font-typewriter);
+    color: #333;
+}
+
+.timer-note.danger #timer-display {
+    color: var(--error-color);
+}
+
+/* ===================================
+   Button Active States
+   =================================== */
+
+.mode-btn[aria-pressed="true"],
+.mode-btn.active {
+    background: var(--accent-gold);
+    color: #000;
+    border-color: var(--accent-gold);
+}
+
+.mode-btn:focus-visible {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: 2px;
+}
+
+/* ===================================
+   Dropdown Select Improvements
+   =================================== */
+
+.dropdown-select {
+    appearance: none;
+    background: var(--paper-color);
+    border: 2px solid #ccc;
+    border-radius: var(--radius-md, 8px);
+    padding: 10px 35px 10px 15px;
+    font-family: var(--font-typewriter);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.dropdown-select:hover {
+    border-color: var(--accent-gold);
+}
+
+.dropdown-select:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(255, 179, 0, 0.2);
+}
+
+.dark-mode .dropdown-select {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+}
+
+/* ===================================
+   Action Buttons
+   =================================== */
+
+.action-btn,
+.danger-btn {
+    font-family: var(--font-typewriter);
+    padding: 12px 24px;
+    border: 2px solid;
+    border-radius: var(--radius-md, 8px);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.action-btn {
+    background: transparent;
+    border-color: var(--text-color);
+    color: var(--text-color);
+}
+
+.action-btn:hover {
+    background: var(--text-color);
+    color: var(--paper-color);
+}
+
+.danger-btn {
+    background: transparent;
+    border-color: var(--error-color);
+    color: var(--error-color);
+}
+
+.danger-btn:hover {
+    background: var(--error-color);
+    color: #fff;
+}
+
+/* ===================================
+   Tab Buttons
+   =================================== */
+
+.stats-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 15px;
+}
+
+.tab-btn {
+    font-family: var(--font-typewriter);
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--text-muted, #666);
+    border-radius: var(--radius-md, 8px);
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-color);
+}
+
+.tab-btn.active {
+    background: var(--accent-gold);
+    color: #000;
+    font-weight: bold;
+}
+
+.dark-mode .tab-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .tab-btn.active {
+    background: var(--accent-gold);
+    color: #000;
+}
+
+/* ===================================
+   Filter Buttons
+   =================================== */
+
+.stats-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    font-family: var(--font-sans, 'Inter', sans-serif);
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background: transparent;
+    border-radius: var(--radius-full, 9999px);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    color: var(--text-muted, #666);
+}
+
+.filter-btn:hover {
+    border-color: var(--accent-gold);
+    color: var(--text-color);
+}
+
+.filter-btn.active {
+    background: var(--accent-gold);
+    border-color: var(--accent-gold);
+    color: #000;
+    font-weight: 600;
+}
+
+/* ===================================
+   Stat Cards
+   =================================== */
+
+.stat-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ===================================
+   Accessibility Improvements
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }

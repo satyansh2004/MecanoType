@@ -1,16 +1,16 @@
-# Mecano Type Test
+# Mecano Type
 
-Mecano Type Test is a web-based typing test application designed to measure and improve typing speed and accuracy through various customizable modes and real-time performance tracking.
+Mecano Type is a web-based typing test application designed to measure and improve typing speed and accuracy through various customizable modes and real-time performance tracking.
 
-**Live Demo:** [https://jorgegarcia33.github.io/MecanoTypeTest/](https://jorgegarcia33.github.io/MecanoTypeTest/)
+**Live Demo:** [https://jorgegarcia33.github.io/MecanoType/](https://jorgegarcia33.github.io/MecanoType/)
 
 <div align="center">
 
-[![GitHub stars](https://img.shields.io/github/stars/jorgegarcia33/MecanoTypeTest?logo=github)](https://github.com/jorgegarcia33/MecanoTypeTest/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/jorgegarcia33/MecanoTypeTest?color=blue)](https://github.com/jorgegarcia33/MecanoTypeTest/network/members)
-[![Contributors](https://img.shields.io/github/contributors/jorgegarcia33/MecanoTypeTest)](https://github.com/jorgegarcia33/MecanoTypeTest/graphs/contributors)
-[![Issues closed](https://img.shields.io/github/issues-closed/jorgegarcia33/MecanoTypeTest?color=orange)](https://github.com/jorgegarcia33/MecanoTypeTest/issues)
-[![PRs closed](https://img.shields.io/github/issues-pr-closed/jorgegarcia33/MecanoTypeTest?color=yellow)](https://github.com/jorgegarcia33/MecanoTypeTest/pulls)
+[![GitHub stars](https://img.shields.io/github/stars/jorgegarcia33/MecanoType?logo=github)](https://github.com/jorgegarcia33/MecanoType/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/jorgegarcia33/MecanoType?color=blue)](https://github.com/jorgegarcia33/MecanoType/network/members)
+[![Contributors](https://img.shields.io/github/contributors/jorgegarcia33/MecanoType)](https://github.com/jorgegarcia33/MecanoType/graphs/contributors)
+[![Issues closed](https://img.shields.io/github/issues-closed/jorgegarcia33/MecanoType?color=orange)](https://github.com/jorgegarcia33/MecanoType/issues)
+[![PRs closed](https://img.shields.io/github/issues-pr-closed/jorgegarcia33/MecanoType?color=yellow)](https://github.com/jorgegarcia33/MecanoType/pulls)
 
 </div>
 
@@ -34,11 +34,11 @@ To run this project on your local machine, you need to serve it through a local 
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/jorgegarcia33/MecanoTypeTest.git
+   git clone https://github.com/jorgegarcia33/MecanoType.git
    ```
 2. **Navigate to the project directory**:
    ```bash
-   cd MecanoTypeTest
+   cd MecanoType
    ```
 3. **Start a local server**:
    Run the following command in your terminal:
@@ -63,4 +63,4 @@ Check the issues labeled `good first issue`.
 > [!TIP]
 > This is **YOUR** tool. Issues and pull requests are welcome.
 
-MecanoTypeTest is kept intentionally small and readable, so contributions that preserve **simplicity** are especially appreciated.
+MecanoType is kept intentionally small and readable, so contributions that preserve **simplicity** are especially appreciated.
