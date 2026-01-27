@@ -1,324 +1,642 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mecano Type - A vintage typewriter-styled typing test app. Practice your typing skills with multiple languages, themes, and game modes.">
-    <meta name="keywords" content="typing test, typing practice, WPM, typing speed, mecanografía, typewriter">
-    <meta name="author" content="Jorge García">
-    <meta name="theme-color" content="#8d6e63">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Mecano Type - A vintage typewriter-styled typing test app. Practice your typing skills with multiple languages, themes, and game modes."
+    />
+    <meta
+      name="keywords"
+      content="typing test, typing practice, WPM, typing speed, mecanografía, typewriter"
+    />
+    <meta name="author" content="Jorge García" />
+    <meta name="theme-color" content="#8d6e63" />
+
     <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Mecano Type - Vintage Typing Practice">
-    <meta property="og:description" content="Practice your typing skills with a beautiful vintage typewriter interface. Track your WPM, accuracy, and improve with learning mode.">
-    <meta property="og:image" content="logo.png">
-    <meta property="og:url" content="https://github.com/jorgegarcia33/MecanoType">
-    
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mecano Type - Vintage Typing Practice" />
+    <meta
+      property="og:description"
+      content="Practice your typing skills with a beautiful vintage typewriter interface. Track your WPM, accuracy, and improve with learning mode."
+    />
+    <meta property="og:image" content="logo.png" />
+    <meta
+      property="og:url"
+      content="https://github.com/jorgegarcia33/MecanoType"
+    />
+
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Mecano Type">
-    <meta name="twitter:description" content="Vintage typewriter typing practice app">
-    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mecano Type" />
+    <meta
+      name="twitter:description"
+      content="Vintage typewriter typing practice app"
+    />
+
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="apple-touch-icon" href="logo.png">
-    
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="apple-touch-icon" href="logo.png" />
+
     <title>Mecano Type - Vintage Typing Practice</title>
-    <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/typewriter.css">
-    <link rel="stylesheet" href="styles/paper.css">
-    <link rel="stylesheet" href="styles/ui.css">
-    <link rel="stylesheet" href="styles/themes.css">
-    <link rel="stylesheet" href="styles/animations.css">
-    <link rel="stylesheet" href="styles/responsive.css">
-    
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/navbar.css" />
+    <link rel="stylesheet" href="styles/typewriter.css" />
+    <link rel="stylesheet" href="styles/paper.css" />
+    <link rel="stylesheet" href="styles/ui.css" />
+    <link rel="stylesheet" href="styles/themes.css" />
+    <link rel="stylesheet" href="styles/animations.css" />
+    <link rel="stylesheet" href="styles/responsive.css" />
+
     <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <!-- Skip to main content for accessibility -->
     <a href="#game-area" class="skip-link">Skip to main content</a>
-    
+
     <!-- Loading overlay -->
     <div id="loading-overlay" class="loading-overlay" aria-live="polite">
-        <div class="loading-spinner"></div>
-        <p>Loading...</p>
+      <div class="loading-spinner"></div>
+      <p>Loading...</p>
     </div>
     <header class="header" role="banner">
-  <div class="nav-container">
-    <a href="index.html" class="logo" aria-label="Mecano Type - Home">
-      <img src="logo.png" alt="" class="logo-img" aria-hidden="true">
-      <span>MecanoType</span>
-    </a>
-    
-    <nav class="nav" role="navigation" aria-label="Main navigation">
-      <ul class="nav-links">
-        <li>
-          <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme" title="Toggle light/dark mode">
-            <i class="fa-solid fa-moon"></i>
-          </button>
-        </li>
-        <li>
-          <a href="https://github.com/jorgegarcia33/MecanoType" target="_blank" title="GitHub Repository" data-i18n-title="nav.github">
-            <i class="fa-brands fa-github"></i>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
+      <div class="nav-container">
+        <a href="index.html" class="logo" aria-label="Mecano Type - Home">
+          <img src="logo.png" alt="" class="logo-img" aria-hidden="true" />
+          <span>MecanoType</span>
+        </a>
 
-<main class="desk" role="main">
-    <div class="typewriter" aria-label="Typewriter interface">
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+          <ul class="nav-links">
+            <li>
+              <button
+                id="theme-toggle"
+                class="theme-toggle-btn"
+                aria-label="Toggle theme"
+                title="Toggle light/dark mode"
+              >
+                <i class="fa-solid fa-moon"></i>
+              </button>
+            </li>
+            <li>
+              <a
+                href="https://github.com/jorgegarcia33/MecanoType"
+                target="_blank"
+                title="GitHub Repository"
+                data-i18n-title="nav.github"
+              >
+                <i class="fa-brands fa-github"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="desk" role="main">
+      <div class="typewriter" aria-label="Typewriter interface">
         <div class="return-lever" aria-hidden="true"></div>
         <div class="roller-section" aria-hidden="true">
-            <div class="knob left"></div>
-            <div class="roller"></div>
-            <div class="knob right"></div>
+          <div class="knob left"></div>
+          <div class="roller"></div>
+          <div class="knob right"></div>
         </div>
 
         <div class="paper-guide">
-            <div id="game-area" class="paper-sheet" role="application" aria-label="Typing area">
-                <div id="words" class="words" aria-live="polite" aria-atomic="false" tabindex="0"></div>
+          <div
+            id="game-area"
+            class="paper-sheet"
+            role="application"
+            aria-label="Typing area"
+          >
+            <div
+              id="words"
+              class="words"
+              aria-live="polite"
+              aria-atomic="false"
+              tabindex="0"
+            ></div>
 
-
-                <div id="settings-sheet" class="sheet-content hidden">
-                    <div class="settings-container">
-                        <div class="setting-group inline-setting">
-                            <label for="language-select" data-i18n="settings.language">Language:</label>
-                            <select id="language-select" class="dropdown-select" data-setting="currentLanguage">
-                                <option value="es" data-i18n="settings.lang.es">Spanish</option>
-                                <option value="de" data-i18n="settings.lang.de">German</option>
-                                <option value="en" data-i18n="settings.lang.en">English</option>
-                                <option value="fr" data-i18n="settings.lang.fr">French</option>
-                            </select>
-                        </div>
-
-                        <div class="setting-group inline-setting">
-                            <label for="mode-select" data-i18n="settings.mode">Mode:</label>
-                            <select id="mode-select" class="dropdown-select" data-setting="gameMode">
-                                <option value="words" data-i18n="settings.mode.words">Words</option>
-                                <option value="time" data-i18n="settings.mode.time">Time</option>
-                            </select>
-                        </div>
-
-                        <div class="setting-group inline-setting" id="setting-words-count">
-                            <label for="word-count" data-i18n="settings.words">Words:</label>
-                            <select id="word-count" class="dropdown-select" data-setting="wordCount">
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                                <option value="infinite" data-i18n="settings.infinite">Infinite</option>
-                            </select>
-                        </div>
-
-                        <div class="setting-group inline-setting hidden" id="setting-time-limit">
-                            <label for="time-limit" data-i18n="settings.time">Time (s):</label>
-                            <select id="time-limit" class="dropdown-select" data-setting="timeLimit">
-                                <option value="15">15</option>
-                                <option value="30">30</option>
-                                <option value="60">60</option>
-                                <option value="120">120</option>
-                            </select>
-                        </div>
-
-                        <div class="setting-group inline-setting">
-                            <label for="generationMode" data-i18n="settings.generationMode">Generation Mode:</label>
-                            <select id="generationMode" class="dropdown-select" data-setting="generationMode">
-                                <option value="random" data-i18n="settings.random">Random</option>
-                                <option value="learning" data-i18n="settings.learning">Learning</option>
-                            </select>
-                        </div>
-
-                        <div class="setting-group inline-setting">
-                            <label for="currentTheme" data-i18n="settings.theme">Theme:</label>
-                            <select id="currentTheme" class="dropdown-select" data-setting="currentTheme">
-                                <option value="light" data-i18n="settings.light">Light</option>
-                                <option value="dark" data-i18n="settings.dark">Dark</option>
-                            </select>
-                        </div>
-
-                        <div class="setting-group">
-                            <button id="close-settings-btn" class="action-btn" data-i18n="actions.backToGame">Back to Game</button>
-                        </div>
-                    </div>
+            <div id="settings-sheet" class="sheet-content hidden">
+              <div class="settings-container">
+                <div class="setting-group inline-setting">
+                  <label for="language-select" data-i18n="settings.language"
+                    >Language:</label
+                  >
+                  <select
+                    id="language-select"
+                    class="dropdown-select"
+                    data-setting="currentLanguage"
+                  >
+                    <option value="es" data-i18n="settings.lang.es">
+                      Spanish
+                    </option>
+                    <option value="de" data-i18n="settings.lang.de">
+                      German
+                    </option>
+                    <option value="en" data-i18n="settings.lang.en">
+                      English
+                    </option>
+                    <option value="fr" data-i18n="settings.lang.fr">
+                      French
+                    </option>
+                    <option value="pt" data-i18n="settings.lang.pt">
+                      Português
+                    </option>
+                  </select>
                 </div>
 
-                <div id="stats-sheet" class="sheet-content hidden">
-                    <div class="stats-tabs">
-                        <button class="tab-btn active" data-tab="profile" data-i18n="stats.tabs.profile">Profile</button>
-                        <button class="tab-btn" data-tab="keys" data-i18n="stats.tabs.keys">Key Analysis</button>
-                    </div>
-
-                    <div id="stats-profile" class="tab-content">
-                        <div class="profile-stats-grid">
-                            <div class="stat-card">
-                                <h4 data-i18n="stats.profile.started">Tests Started</h4>
-                                <div class="stat-value" id="profile-started">0</div>
-                            </div>
-                            <div class="stat-card">
-                                <h4 data-i18n="stats.profile.completed">Tests Completed</h4>
-                                <div class="stat-value" id="profile-completed">0</div>
-                            </div>
-                            <div class="stat-card">
-                                <h4 data-i18n="stats.profile.time">Time Typing</h4>
-                                <div class="stat-value" id="profile-time">00:00:00</div>
-                            </div>
-                        </div>
-
-                        <h4 class="section-title" data-i18n="stats.profile.records">Personal Records (WPM)</h4>
-
-                        <div class="records-grid">
-                            <div class="record-header" data-i18n="settings.words">Words</div>
-                            <div class="record-header" data-i18n="results.wpm">WPM</div>
-                            <div class="record-header" data-i18n="results.accuracy">ACC</div>
-
-                            <div class="record-row-label">10</div>
-                            <div class="record-val" id="rec-10-wpm">-</div>
-                            <div class="record-val" id="rec-10-acc">-</div>
-
-                            <div class="record-row-label">25</div>
-                            <div class="record-val" id="rec-25-wpm">-</div>
-                            <div class="record-val" id="rec-25-acc">-</div>
-
-                            <div class="record-row-label">50</div>
-                            <div class="record-val" id="rec-50-wpm">-</div>
-                            <div class="record-val" id="rec-50-acc">-</div>
-
-                            <div class="record-row-label">100</div>
-                            <div class="record-val" id="rec-100-wpm">-</div>
-                            <div class="record-val" id="rec-100-acc">-</div>
-                        </div>
-                    </div>
-
-                    <div id="stats-keys" class="tab-content hidden">
-                        <div class="stats-filters">
-                            <button class="filter-btn" data-filter="all" data-i18n="stats.filters.all">All</button>
-                            <button class="filter-btn active" data-filter="lowercase" data-i18n="stats.filters.lowercase">a-z</button>
-                            <button class="filter-btn" data-filter="uppercase" data-i18n="stats.filters.uppercase">A-Z</button>
-                            <button class="filter-btn" data-filter="accents" data-i18n="stats.filters.accents">á-ü</button>
-                            <button class="filter-btn" data-filter="numbers" data-i18n="stats.filters.numbers">0-9</button>
-                            <button class="filter-btn" data-filter="symbols" data-i18n="stats.filters.symbols">#@!</button>
-                        </div>
-                        <div class="table-container">
-                            <table id="global-stats-table" class="global-stats-table">
-                                <thead>
-                                <tr>
-                                    <th class="sortable" data-sort="char"><span data-i18n="stats.headers.key">Key</span> <i class="fas fa-sort"></i></th>
-                                    <th class="sortable" data-sort="total"><span data-i18n="stats.headers.total">Total</span> <i class="fas fa-sort"></i></th>
-                                    <th class="sortable" data-sort="errors"><span data-i18n="stats.headers.errors">Errors</span> <i class="fas fa-sort"></i></th>
-                                    <th class="sortable" data-sort="rate"><span data-i18n="stats.headers.errorRate">% Error</span> <i class="fas fa-sort"></i></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="sheet-footer">
-                        <button id="reset-stats-btn" class="danger-btn" data-i18n="actions.resetHistory">Reset History</button>
-                        <button id="close-stats-btn" class="action-btn" data-i18n="actions.backToGame">Back to Game</button>
-                    </div>
+                <div class="setting-group inline-setting">
+                  <label for="mode-select" data-i18n="settings.mode"
+                    >Mode:</label
+                  >
+                  <select
+                    id="mode-select"
+                    class="dropdown-select"
+                    data-setting="gameMode"
+                  >
+                    <option value="words" data-i18n="settings.mode.words">
+                      Words
+                    </option>
+                    <option value="time" data-i18n="settings.mode.time">
+                      Time
+                    </option>
+                  </select>
                 </div>
+
+                <div
+                  class="setting-group inline-setting"
+                  id="setting-words-count"
+                >
+                  <label for="word-count" data-i18n="settings.words"
+                    >Words:</label
+                  >
+                  <select
+                    id="word-count"
+                    class="dropdown-select"
+                    data-setting="wordCount"
+                  >
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="infinite" data-i18n="settings.infinite">
+                      Infinite
+                    </option>
+                  </select>
+                </div>
+
+                <div
+                  class="setting-group inline-setting hidden"
+                  id="setting-time-limit"
+                >
+                  <label for="time-limit" data-i18n="settings.time"
+                    >Time (s):</label
+                  >
+                  <select
+                    id="time-limit"
+                    class="dropdown-select"
+                    data-setting="timeLimit"
+                  >
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="60">60</option>
+                    <option value="120">120</option>
+                  </select>
+                </div>
+
+                <div class="setting-group inline-setting">
+                  <label
+                    for="generationMode"
+                    data-i18n="settings.generationMode"
+                    >Generation Mode:</label
+                  >
+                  <select
+                    id="generationMode"
+                    class="dropdown-select"
+                    data-setting="generationMode"
+                  >
+                    <option value="random" data-i18n="settings.random">
+                      Random
+                    </option>
+                    <option value="learning" data-i18n="settings.learning">
+                      Learning
+                    </option>
+                  </select>
+                </div>
+
+                <div class="setting-group inline-setting">
+                  <label for="currentTheme" data-i18n="settings.theme"
+                    >Theme:</label
+                  >
+                  <select
+                    id="currentTheme"
+                    class="dropdown-select"
+                    data-setting="currentTheme"
+                  >
+                    <option value="light" data-i18n="settings.light">
+                      Light
+                    </option>
+                    <option value="dark" data-i18n="settings.dark">Dark</option>
+                  </select>
+                </div>
+
+                <div class="setting-group">
+                  <button
+                    id="close-settings-btn"
+                    class="action-btn"
+                    data-i18n="actions.backToGame"
+                  >
+                    Back to Game
+                  </button>
+                </div>
+              </div>
             </div>
+
+            <div id="stats-sheet" class="sheet-content hidden">
+              <div class="stats-tabs">
+                <button
+                  class="tab-btn active"
+                  data-tab="profile"
+                  data-i18n="stats.tabs.profile"
+                >
+                  Profile
+                </button>
+                <button
+                  class="tab-btn"
+                  data-tab="keys"
+                  data-i18n="stats.tabs.keys"
+                >
+                  Key Analysis
+                </button>
+              </div>
+
+              <div id="stats-profile" class="tab-content">
+                <div class="profile-stats-grid">
+                  <div class="stat-card">
+                    <h4 data-i18n="stats.profile.started">Tests Started</h4>
+                    <div class="stat-value" id="profile-started">0</div>
+                  </div>
+                  <div class="stat-card">
+                    <h4 data-i18n="stats.profile.completed">Tests Completed</h4>
+                    <div class="stat-value" id="profile-completed">0</div>
+                  </div>
+                  <div class="stat-card">
+                    <h4 data-i18n="stats.profile.time">Time Typing</h4>
+                    <div class="stat-value" id="profile-time">00:00:00</div>
+                  </div>
+                </div>
+
+                <h4 class="section-title" data-i18n="stats.profile.records">
+                  Personal Records (WPM)
+                </h4>
+
+                <div class="records-grid">
+                  <div class="record-header" data-i18n="settings.words">
+                    Words
+                  </div>
+                  <div class="record-header" data-i18n="results.wpm">WPM</div>
+                  <div class="record-header" data-i18n="results.accuracy">
+                    ACC
+                  </div>
+
+                  <div class="record-row-label">10</div>
+                  <div class="record-val" id="rec-10-wpm">-</div>
+                  <div class="record-val" id="rec-10-acc">-</div>
+
+                  <div class="record-row-label">25</div>
+                  <div class="record-val" id="rec-25-wpm">-</div>
+                  <div class="record-val" id="rec-25-acc">-</div>
+
+                  <div class="record-row-label">50</div>
+                  <div class="record-val" id="rec-50-wpm">-</div>
+                  <div class="record-val" id="rec-50-acc">-</div>
+
+                  <div class="record-row-label">100</div>
+                  <div class="record-val" id="rec-100-wpm">-</div>
+                  <div class="record-val" id="rec-100-acc">-</div>
+                </div>
+              </div>
+
+              <div id="stats-keys" class="tab-content hidden">
+                <div class="stats-filters">
+                  <button
+                    class="filter-btn"
+                    data-filter="all"
+                    data-i18n="stats.filters.all"
+                  >
+                    All
+                  </button>
+                  <button
+                    class="filter-btn active"
+                    data-filter="lowercase"
+                    data-i18n="stats.filters.lowercase"
+                  >
+                    a-z
+                  </button>
+                  <button
+                    class="filter-btn"
+                    data-filter="uppercase"
+                    data-i18n="stats.filters.uppercase"
+                  >
+                    A-Z
+                  </button>
+                  <button
+                    class="filter-btn"
+                    data-filter="accents"
+                    data-i18n="stats.filters.accents"
+                  >
+                    á-ü
+                  </button>
+                  <button
+                    class="filter-btn"
+                    data-filter="numbers"
+                    data-i18n="stats.filters.numbers"
+                  >
+                    0-9
+                  </button>
+                  <button
+                    class="filter-btn"
+                    data-filter="symbols"
+                    data-i18n="stats.filters.symbols"
+                  >
+                    #@!
+                  </button>
+                </div>
+                <div class="table-container">
+                  <table id="global-stats-table" class="global-stats-table">
+                    <thead>
+                      <tr>
+                        <th class="sortable" data-sort="char">
+                          <span data-i18n="stats.headers.key">Key</span>
+                          <i class="fas fa-sort"></i>
+                        </th>
+                        <th class="sortable" data-sort="total">
+                          <span data-i18n="stats.headers.total">Total</span>
+                          <i class="fas fa-sort"></i>
+                        </th>
+                        <th class="sortable" data-sort="errors">
+                          <span data-i18n="stats.headers.errors">Errors</span>
+                          <i class="fas fa-sort"></i>
+                        </th>
+                        <th class="sortable" data-sort="rate">
+                          <span data-i18n="stats.headers.errorRate"
+                            >% Error</span
+                          >
+                          <i class="fas fa-sort"></i>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="sheet-footer">
+                <button
+                  id="reset-stats-btn"
+                  class="danger-btn"
+                  data-i18n="actions.resetHistory"
+                >
+                  Reset History
+                </button>
+                <button
+                  id="close-stats-btn"
+                  class="action-btn"
+                  data-i18n="actions.backToGame"
+                >
+                  Back to Game
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="machine-body">
-            <div class="typebars-semicircle">
-                <div class="typebars-inner"></div>
-            </div>
+          <div class="typebars-semicircle">
+            <div class="typebars-inner"></div>
+          </div>
 
-            <div class="brand-plate">ROYAL</div>
+          <div class="brand-plate">ROYAL</div>
 
-            <div class="controls-row" role="toolbar" aria-label="Game controls">
-                <div class="keyboard-area" role="group" aria-label="Typing modifiers">
-                    <button id="numbers-btn" class="mode-btn numbers-button" title="Numbers" data-i18n-title="tooltips.numbers" aria-pressed="false" aria-label="Toggle numbers">123</button>
-                    <button id="uppercase-btn" class="mode-btn" title="Uppercase" data-i18n-title="tooltips.uppercase" aria-pressed="false" aria-label="Toggle uppercase"><i class="fas fa-font" aria-hidden="true"></i></button>
-                    <button id="symbols-btn" class="mode-btn" title="Symbols" data-i18n-title="tooltips.symbols" aria-pressed="false" aria-label="Toggle symbols"><i class="fas fa-at" aria-hidden="true"></i></button>
-                    <button id="sudden-death-btn" class="mode-btn" title="Sudden Death" data-i18n-title="tooltips.suddenDeath" aria-pressed="false" aria-label="Toggle sudden death mode"><i class="fas fa-skull" aria-hidden="true"></i></button>
-                    <button id="zen-btn" class="mode-btn" data-zen="false" title="Zen Mode" data-i18n-title="tooltips.zenMode" data-i18n-aria="tooltips.zenMode" aria-pressed="false" aria-label="Toggle zen mode">
-                        <i class="fas fa-spa" aria-hidden="true"></i>
-                    </button>
-                </div>
-                <div class="keyboard-area" role="group" aria-label="Settings and stats">
-                    <button id="sound-btn" class="mode-btn" title="Sound" data-i18n-title="tooltips.sound" aria-pressed="true" aria-label="Toggle sound"><i class="fas fa-volume-mute" aria-hidden="true"></i></button>
-                    <button id="stats-btn" class="mode-btn" title="Statistics" data-i18n-title="tooltips.statistics" aria-label="View statistics"><i class="fas fa-chart-bar" aria-hidden="true"></i></button>
-                    <button id="settings-btn" class="mode-btn" title="Settings" data-i18n-title="tooltips.settings" aria-label="Open settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
-                </div>
+          <div class="controls-row" role="toolbar" aria-label="Game controls">
+            <div
+              class="keyboard-area"
+              role="group"
+              aria-label="Typing modifiers"
+            >
+              <button
+                id="numbers-btn"
+                class="mode-btn numbers-button"
+                title="Numbers"
+                data-i18n-title="tooltips.numbers"
+                aria-pressed="false"
+                aria-label="Toggle numbers"
+              >
+                123
+              </button>
+              <button
+                id="uppercase-btn"
+                class="mode-btn"
+                title="Uppercase"
+                data-i18n-title="tooltips.uppercase"
+                aria-pressed="false"
+                aria-label="Toggle uppercase"
+              >
+                <i class="fas fa-font" aria-hidden="true"></i>
+              </button>
+              <button
+                id="symbols-btn"
+                class="mode-btn"
+                title="Symbols"
+                data-i18n-title="tooltips.symbols"
+                aria-pressed="false"
+                aria-label="Toggle symbols"
+              >
+                <i class="fas fa-at" aria-hidden="true"></i>
+              </button>
+              <button
+                id="sudden-death-btn"
+                class="mode-btn"
+                title="Sudden Death"
+                data-i18n-title="tooltips.suddenDeath"
+                aria-pressed="false"
+                aria-label="Toggle sudden death mode"
+              >
+                <i class="fas fa-skull" aria-hidden="true"></i>
+              </button>
+              <button
+                id="zen-btn"
+                class="mode-btn"
+                data-zen="false"
+                title="Zen Mode"
+                data-i18n-title="tooltips.zenMode"
+                data-i18n-aria="tooltips.zenMode"
+                aria-pressed="false"
+                aria-label="Toggle zen mode"
+              >
+                <i class="fas fa-spa" aria-hidden="true"></i>
+              </button>
             </div>
+            <div
+              class="keyboard-area"
+              role="group"
+              aria-label="Settings and stats"
+            >
+              <button
+                id="sound-btn"
+                class="mode-btn"
+                title="Sound"
+                data-i18n-title="tooltips.sound"
+                aria-pressed="true"
+                aria-label="Toggle sound"
+              >
+                <i class="fas fa-volume-mute" aria-hidden="true"></i>
+              </button>
+              <button
+                id="stats-btn"
+                class="mode-btn"
+                title="Statistics"
+                data-i18n-title="tooltips.statistics"
+                aria-label="View statistics"
+              >
+                <i class="fas fa-chart-bar" aria-hidden="true"></i>
+              </button>
+              <button
+                id="settings-btn"
+                class="mode-btn"
+                title="Settings"
+                data-i18n-title="tooltips.settings"
+                aria-label="Open settings"
+              >
+                <i class="fas fa-cog" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <aside id="stats" class="sticky-note hidden" role="complementary" aria-label="Test results">
+      <aside
+        id="stats"
+        class="sticky-note hidden"
+        role="complementary"
+        aria-label="Test results"
+      >
         <div class="pin" aria-hidden="true"></div>
         <h3 data-i18n="results.title">RESULTS</h3>
         <div class="stat-row">
-            <div class="stat">
-                <div class="val" id="wpm" aria-label="Words per minute">0</div>
-                <div class="label" data-i18n="results.wpm">WPM</div>
-            </div>
-            <div class="stat">
-                <div class="val" id="acc" aria-label="Accuracy percentage">0%</div>
-                <div class="label" data-i18n="results.accuracy">ACCURACY</div>
-            </div>
+          <div class="stat">
+            <div class="val" id="wpm" aria-label="Words per minute">0</div>
+            <div class="label" data-i18n="results.wpm">WPM</div>
+          </div>
+          <div class="stat">
+            <div class="val" id="acc" aria-label="Accuracy percentage">0%</div>
+            <div class="label" data-i18n="results.accuracy">ACCURACY</div>
+          </div>
         </div>
         <div class="stat-row">
-            <div class="stat">
-                <div class="val" id="errors" aria-label="Number of errors">0</div>
-                <div class="label" data-i18n="results.errors">ERRORS</div>
-            </div>
+          <div class="stat">
+            <div class="val" id="errors" aria-label="Number of errors">0</div>
+            <div class="label" data-i18n="results.errors">ERRORS</div>
+          </div>
         </div>
         <div class="stat wide">
-            <div class="label" data-i18n="results.weakKeys">Weak keys:</div>
-            <div class="val" id="weak-keys" aria-label="Keys with most errors">-</div>
+          <div class="label" data-i18n="results.weakKeys">Weak keys:</div>
+          <div class="val" id="weak-keys" aria-label="Keys with most errors">
+            -
+          </div>
         </div>
-    </aside>
+      </aside>
 
-    <aside id="restart-note" class="sticky-note hidden restart-note" role="complementary">
+      <aside
+        id="restart-note"
+        class="sticky-note hidden restart-note"
+        role="complementary"
+      >
         <div class="pin" aria-hidden="true"></div>
         <button id="restart-button" aria-label="Restart test (Tab)">
-            <i class="fas fa-redo" aria-hidden="true"></i> <span data-i18n="actions.restart">RESTART</span>
+          <i class="fas fa-redo" aria-hidden="true"></i>
+          <span data-i18n="actions.restart">RESTART</span>
         </button>
-    </aside>
-    
-    <aside id="timer-container" class="sticky-note hidden timer-note" role="timer" aria-live="assertive">
+      </aside>
+
+      <aside
+        id="timer-container"
+        class="sticky-note hidden timer-note"
+        role="timer"
+        aria-live="assertive"
+      >
         <div class="pin" aria-hidden="true"></div>
-        <span id="timer-display" aria-label="Time remaining in seconds">30</span><span class="timer-unit">s</span>
-    </aside>
+        <span id="timer-display" aria-label="Time remaining in seconds">30</span
+        ><span class="timer-unit">s</span>
+      </aside>
 
-    <!-- Keyboard hint in corner (only visible on large screens) -->
-    <div class="corner-hint" aria-hidden="true">
-        <span class="hint-key">Tab</span> <span class="hint-text" data-i18n="shortcuts.restart">Restart</span>
-    </div>
-    
-</main>
+      <!-- Keyboard hint in corner (only visible on large screens) -->
+      <div class="corner-hint" aria-hidden="true">
+        <span class="hint-key">Tab</span>
+        <span class="hint-text" data-i18n="shortcuts.restart">Restart</span>
+      </div>
+    </main>
 
-<!-- Confirmation Modal -->
-<div id="confirm-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="modal-backdrop"></div>
-    <div class="modal-content">
+    <!-- Confirmation Modal -->
+    <div
+      id="confirm-modal"
+      class="modal hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div class="modal-backdrop"></div>
+      <div class="modal-content">
         <h3 id="modal-title" data-i18n="modal.confirm">Confirm</h3>
         <p id="modal-message"></p>
         <div class="modal-actions">
-            <button id="modal-cancel" class="action-btn" data-i18n="modal.cancel">Cancel</button>
-            <button id="modal-confirm" class="danger-btn" data-i18n="modal.confirm">Confirm</button>
+          <button id="modal-cancel" class="action-btn" data-i18n="modal.cancel">
+            Cancel
+          </button>
+          <button
+            id="modal-confirm"
+            class="danger-btn"
+            data-i18n="modal.confirm"
+          >
+            Confirm
+          </button>
         </div>
+      </div>
     </div>
-</div>
 
-<input type="text" id="mobile-input" class="mobile-input" aria-label="Mobile typing input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="text">
+    <input
+      type="text"
+      id="mobile-input"
+      class="mobile-input"
+      aria-label="Mobile typing input"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      inputmode="text"
+    />
 
-<!-- Toast notifications container -->
-<div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+    <!-- Toast notifications container -->
+    <div
+      id="toast-container"
+      class="toast-container"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
 
-<script type="module" src="./js/main.js"></script>
-</body>
+    <script type="module" src="./js/main.js"></script>
+  </body>
 </html>
