@@ -388,7 +388,7 @@ export async function loadWords() {
     data.wordsListEN = ["error", "loading", "words", "check", "console"];
     data.wordsListDE = ["fehler", "laden", "wörter", "überprüfen", "konsole"];
     data.wordsListFR = ["erreur", "chargement", "mots", "vérifier", "console"];
-    data.wordsListPT = ["erreur", "chargement", "mots", "vérifier", "console"];
+    data.wordsListPT = ["erro", "carregando", "palavras", "verificar", "console"];
     alert(t("alerts.loadWords"));
   }
 }
