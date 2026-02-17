@@ -420,33 +420,55 @@ export function toggleMobile() {
         }, { passive: true });
 
         window.addEventListener('click', (e) => {
-            if (!e.target.closest('button') && !e.target.closest('.modal') && window.innerWidth <= 1024) {
+            if (!e.target.closest('button') && !e.target.closest('.modal')) {
                 mobileInput.focus();
             }
         });
 
+        // Character input via input event — always gives correctly composed characters
+        // (handles dead keys / accented chars on Linux reliably)
         mobileInput.addEventListener('input', (e) => {
-            
             if (e.inputType === 'deleteContentBackward') {
                 handleKeydown({ key: 'Backspace', preventDefault: () => {} });
-            } else if (e.inputType === 'insertLineBreak' || (e.data && e.data.includes('\n'))) {
+                mobileInput.value = '';
+                return;
+            }
+            if (e.inputType === 'insertLineBreak' || (e.data && e.data.includes('\n'))) {
                 handleKeydown({ key: 'Enter', preventDefault: () => {} });
-            } else if (e.data) {
-                const char = e.data;
-                if (char === ' ') {
-                    handleKeydown({ key: ' ', preventDefault: () => {} });
-                } else {
-                    for (const c of char) {
+                mobileInput.value = '';
+                return;
+            }
+
+            const value = mobileInput.value;
+
+            // If value only contains dead key accent marks (´ ` ^ ~ ¨), the user
+            // pressed a dead key and hasn't typed the vowel yet — wait for it.
+            // Don't clear the value so the browser can compose the character (´ + a → á)
+            if (/^[´`^~¨]+$/.test(value)) return;
+
+            mobileInput.value = '';
+            if (value) {
+                for (const c of value) {
+                    if (c === ' ') {
+                        handleKeydown({ key: ' ', preventDefault: () => {} });
+                    } else {
                         handleKeydown({ key: c, preventDefault: () => {} });
                     }
                 }
             }
-            mobileInput.value = '';
         });
-        
+
+        // Special keys handled via keydown on the hidden input
         mobileInput.addEventListener('keydown', (e) => {
             e.stopPropagation();
+            if (e.key === 'Tab' || e.key === 'Backspace' || e.key === 'Enter' || e.key === 'Escape') {
+                e.preventDefault();
+                handleKeydown(e);
+            }
         });
+
+        // Keep hidden input focused during game
+        mobileInput.focus();
     }
 }
 

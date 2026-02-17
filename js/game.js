@@ -26,6 +26,7 @@ import {
   weakKeysEl,
   restartBtn,
   showToast,
+  mobileInput,
 } from "./ui.js";
 import { t, startTimer, stopTimer } from "./utils.js";
 
@@ -88,7 +89,8 @@ export function initGame(tearPaper = true, keepView = false) {
 
     oldPaper.classList.add("tearing");
 
-    oldPaper.style.transition = "transform 0.6s ease-in, opacity 0.6s ease-in";
+    oldPaper.style.transition =
+      "transform 0.6s ease-in, opacity 0.6s ease-in";
 
     oldPaper.style.transform = "translate(1000px, -200px) rotate(15deg)";
     oldPaper.style.opacity = "0";
@@ -102,6 +104,7 @@ export function initGame(tearPaper = true, keepView = false) {
     ui.currentView = "game";
   }
   window.removeEventListener("keydown", handleKeydown);
+  window.removeEventListener("compositionend", handleCompositionEnd);
 
   game.currentWordIndex = 0;
   game.currentLetterIndex = 0;
@@ -145,6 +148,9 @@ export function initGame(tearPaper = true, keepView = false) {
   }
 
   window.addEventListener("keydown", handleKeydown);
+  window.addEventListener("compositionend", handleCompositionEnd);
+
+  if (mobileInput) mobileInput.focus();
 
   if (!config.zenModeEnabled) updateCursor();
 
@@ -333,6 +339,8 @@ export function updateZenCursor() {
 }
 
 export function handleZenInput(e) {
+  if (e.isComposing || e.key === "Dead") return;
+
   if (e.key === "Tab") {
     e.preventDefault();
     initGame();
@@ -375,18 +383,30 @@ export function handleZenInput(e) {
     return;
   }
 
-  if (e.key.length === 1) {
+  const zenKey = e.key.normalize("NFC");
+  if (zenKey.length === 1) {
     e.preventDefault();
     playSound("click");
 
     const prev = cursor.previousSibling;
     if (prev && prev.nodeType === Node.TEXT_NODE) {
-      prev.textContent += e.key;
+      prev.textContent += zenKey;
     } else {
-      const text = document.createTextNode(e.key);
+      const text = document.createTextNode(zenKey);
       wordsContainer.insertBefore(text, cursor);
     }
     updateZenCursor();
+  }
+}
+
+/** Handle composed characters from dead keys (fallback when hidden input not focused) */
+function handleCompositionEnd(e) {
+  // Skip if hidden input is focused — its input event handles composed chars
+  if (mobileInput && document.activeElement === mobileInput) return;
+  if (e.data) {
+    for (const char of e.data) {
+      handleKeydown({ key: char, preventDefault: () => {} });
+    }
   }
 }
 
@@ -406,6 +426,7 @@ export function handleKeydown(e) {
     return;
   }
 
+  if (e.isComposing || e.key === "Dead") return;
   if (["Shift", "Control", "Alt", "CapsLock"].includes(e.key)) return;
 
   if (e.key === "Tab") {
@@ -565,16 +586,20 @@ export function handleKeydown(e) {
     return;
   }
 
-  if (e.key.length === 1) {
+  // Normalize to NFC to handle dead key compositions on Linux
+  const typedKey = e.key.normalize("NFC");
+
+  if (typedKey.length === 1) {
     if (game.currentLetterIndex < currentWord.length) {
-      const expectedChar = currentWord[game.currentLetterIndex];
+      const expectedChar =
+        currentWord[game.currentLetterIndex].normalize("NFC");
 
       if (!stats.charStats[expectedChar]) {
         stats.charStats[expectedChar] = { total: 0, errors: 0 };
       }
       stats.charStats[expectedChar].total++;
 
-      if (e.key === expectedChar) {
+      if (typedKey === expectedChar) {
         currentLetterSpan.classList.add("correct");
         game.correctChars++;
         playSound("click");
@@ -598,7 +623,7 @@ export function handleKeydown(e) {
     } else {
       const extraSpan = document.createElement("span");
       extraSpan.className = "letter incorrect extra";
-      extraSpan.textContent = e.key;
+      extraSpan.textContent = typedKey;
       currentWordDiv.appendChild(extraSpan);
 
       game.errorCount++;
