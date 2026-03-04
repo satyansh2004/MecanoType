@@ -12,6 +12,7 @@ import {
   saveUserStats,
   saveCharStats,
   checkAndSaveRecord,
+  resetUserStats,
 } from "./stats.js";
 import {
   ui,

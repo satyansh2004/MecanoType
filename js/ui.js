@@ -7,7 +7,7 @@ import { audio, initAudio, playSound } from './audio.js';
 import { config, setStorageItem } from './config.js';
 import { data, applyTranslations } from './data.js';
 import { game, initGame, handleKeydown } from './game.js';
-import { stats, renderUserStats, renderGlobalStatsTable, currentSort } from './stats.js';
+import { stats, renderUserStats, renderGlobalStatsTable, currentSort, resetUserStats } from './stats.js';
 import { t } from './utils.js';
 
 // ===================================
@@ -655,6 +655,8 @@ export function initButtons() {
     });
 
     resetStatsBtn.addEventListener('click', () => {
+        resetUserStats();
+        // loadUserStats();
         showConfirmModal(
             t("alerts.resetHistory"),
             () => {
