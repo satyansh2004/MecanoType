@@ -912,3 +912,32 @@ th.sortable.desc i::before {
         transition-duration: 0.01ms !important;
     }
 }
+/* Caps Lock Warning */
+.caps-warning {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ef5350;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+body.dark-mode .caps-warning {
+    background-color: #d32f2f;
+}
+
+.caps-warning i {
+    font-size: 1rem;
+}
