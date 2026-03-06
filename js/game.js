@@ -748,8 +748,7 @@ export function restartGame() {
 }
 
 // CapsLock Detection
-let window = document.body;
-window.addEventListener("keyup", function capsLockDetecttion(e) {
+document.body.addEventListener("keyup", function capsLockDetecttion(e) {
   if (e.getModifierState("CapsLock")) {
     setTimeout(() => {
       showToast(
@@ -759,4 +758,4 @@ window.addEventListener("keyup", function capsLockDetecttion(e) {
       );
     }, 500);
   }
-})
+});

@@ -146,7 +146,7 @@
 }
 
 .modal {
-    display: none;
+    
     position: fixed;
     z-index: 100;
     left: 0;
@@ -158,9 +158,6 @@
     backdrop-filter: blur(2px);
 }
 
-.modal.show {
-    display: block;
-}
 
 .modal-content {
     background-color: #fff9c4;

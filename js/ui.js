@@ -655,12 +655,11 @@ export function initButtons() {
     });
 
     resetStatsBtn.addEventListener('click', () => {
-        resetUserStats();
-        // loadUserStats();
         showConfirmModal(
             t("alerts.resetHistory"),
             () => {
                 // On confirm
+                resetUserStats();
                 stats.charStats = {};
                 localStorage.removeItem('mecano_char_stats');
                 renderGlobalStatsTable();
